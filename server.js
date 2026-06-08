@@ -6,10 +6,6 @@ const app = express();
 
 app.use(express.json());
 
-// Experimente acessar:
-// /cores/red
-// /cores/blue
-// /cores/verde
 app.get("/cores/:corEscolhida", (req, res) => {
   const corEscolhida = req.params.corEscolhida;
   corEscolhida === "red" &&
@@ -23,20 +19,17 @@ app.get("/cores/:corEscolhida", (req, res) => {
     res.send("<span>Cor não encontrada</span>");
 });
 
-// Experimente acessar /dobrar/12
 app.get("/dobrar/:numero", (req, res) => {
   const dobro = Number(req.params.numero) * 2;
   res.send(`<p>O dobro do número é: ${dobro}<p>`);
 });
 
-// Experimente acessar /dobrar-varios/2,5,4,2,10
 app.get("/dobrar-varios/:numeros", (req, res) => {
   const numeros = req.params.numeros.split(",").map((numero) => Number(numero));
   const dobros = numeros.map((numero) => numero * 2);
   res.send(`<p>Os dobros dos números são: ${dobros.join(", ")}</p>`);
 });
 
-// Experimente acessar /oi/Duda/Velho
 app.get("/oi/:nome/:sobrenome", (req, res) => {
   const nome = req.params.nome;
   const sobrenome = req.params.sobrenome;
